@@ -1,40 +1,31 @@
-import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Card,
-  Button,
-  Form,
-} from 'react-bootstrap';
-import { useGetProductDetailsQuery } from '../slices/productsApiSlice';
-import Rating from '../components/Rating';
-import Loader from '../components/Loader';
-import Message from '../components/Message';
-import { addToCart } from '../slices/cartSlice';
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useGetProductDetailsQuery } from '../slices/productsApiSlice'
+import { useNavigate, useParams, Link } from 'react-router-dom'
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import Rating from '../components/Rating'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { addToCart } from '../slices/cartSlice'
 
 const ProductScreen = () => {
-  const { id: productId } = useParams();
+  const { id: productId } = useParams()
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(1)
 
   const addToCartHandler = () => {
-    dispatch(addToCart({ ...product, qty }));
-    navigate('/cart');
-  };
+    dispatch(addToCart({ ...product, qty }))
+    navigate('/cart')
+  }
 
   const {
     data: product,
     isLoading,
     error,
-  } = useGetProductDetailsQuery(productId);
+  } = useGetProductDetailsQuery(productId)
 
   return (
     <>
@@ -131,7 +122,7 @@ const ProductScreen = () => {
         </>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ProductScreen;
+export default ProductScreen
